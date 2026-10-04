@@ -18,7 +18,7 @@ Repozitář neobsahuje scraper, tokeny, soukromý audit ani čekající měřen�
 
 Názvy **IBIS** a **Golden Gate** jsou vycentrované nad příslušnými dvojicemi sloupců. Oba řádky záhlaví zůstávají viditelné při svislém posouvání historie. Tabulku lze na úzkém displeji posouvat také vodorovně.
 
-Podrobný návod pro používání, testovací režim, instalaci a kontrolu po nasazení je v [docs/USER_GUIDE.md](docs/USER_GUIDE.md).
+Podrobný návod pro používání, testovací režim, instalaci a kontrolu po nasazení je v [docs/USER_GUIDE.md](docs/USER_GUIDE.md). Datový kontrakt, mapa souborů, cache a pravidla změn jsou v [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 ## GitHub Pages
 
