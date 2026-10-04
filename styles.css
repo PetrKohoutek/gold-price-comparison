@@ -9,3 +9,13 @@ tbody td{text-align:right}
 td.day{font-weight:750;vertical-align:middle;color:var(--text)!important;text-align:left}
 .secondary{color:var(--muted);font-size:.84rem}
 @media(max-width:700px){table{min-width:680px}th,td{padding:8px 7px}.secondary{font-size:.75rem}}
+
+/* Připnuté dvouřádkové záhlaví historie. */
+.table-wrap{max-height:min(70vh,760px)}
+thead tr:first-child{height:46px}
+thead th{z-index:2}
+thead tr:first-child th{top:0;z-index:4}
+thead tr:nth-child(2) th{top:46px;z-index:3}
+thead tr:first-child th[colspan="2"]{text-align:center}
+thead tr:first-child th[rowspan="2"]{vertical-align:middle}
+@media(max-width:700px){.table-wrap{max-height:65vh}}
