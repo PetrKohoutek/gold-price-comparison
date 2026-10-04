@@ -3,6 +3,9 @@
 /* Dvouřádkové mobilní zobrazení jednoho dne. */
 tbody tr.day-prices td{border-bottom:0;padding-bottom:5px}
 tbody tr.day-spreads td{padding-top:5px;color:var(--muted)}
-td.day{font-weight:750;vertical-align:middle;color:var(--text)!important}
+table th,table td{border-right:1px solid var(--line)}
+table th:last-child,table td:last-child{border-right:0}
+tbody td{text-align:right}
+td.day{font-weight:750;vertical-align:middle;color:var(--text)!important;text-align:left}
 .secondary{color:var(--muted);font-size:.84rem}
 @media(max-width:700px){table{min-width:680px}th,td{padding:8px 7px}.secondary{font-size:.75rem}}
