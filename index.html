@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#cfa24c">
+  <meta name="description" content="Denní porovnání prodejních a výkupních cen slitku PAMP Lady Fortuna 1 oz.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Porovnání cen zlata – PAMP Lady Fortuna 1 oz</title>
+</head>
+<body>
+<header>
+  <div><p class="eyebrow">PAMP Lady Fortuna · 1 oz</p><h1>Porovnání cen zlata</h1></div>
+  <div class="actions"><button id="theme" aria-label="Přepnout vzhled">◐</button><button id="test-mode">Testovací data</button></div>
+</header>
+<main>
+  <section id="notice" class="notice" hidden></section>
+  <section aria-labelledby="current-title"><div class="section-title"><h2 id="current-title">Aktuální porovnání</h2><span id="date"></span></div><div id="cards" class="cards"></div></section>
+  <section aria-labelledby="history-title">
+    <div class="section-title"><h2 id="history-title">Historie</h2><div><button id="csv">Stáhnout CSV</button><button id="all">Zobrazit vše</button></div></div>
+    <div class="table-wrap"><table><thead><tr><th rowspan="2">Datum</th><th colspan="2">IBIS</th><th colspan="2">Golden Gate</th><th colspan="3" class="secondary">Provozní údaje</th></tr><tr><th>Prodej / spread Kč</th><th>Výkup / spread %</th><th>Prodej / spread Kč</th><th>Výkup / spread %</th><th class="secondary">Plán</th><th class="secondary">Načteno</th><th class="secondary">Oprava</th></tr></thead><tbody id="history"></tbody></table></div>
+  </section>
+</main>
+<dialog id="password-dialog"><form method="dialog"><h2>Testovací režim</h2><p>Zadejte heslo. Ověření proběhne jen v tomto zařízení.</p><input id="password" type="password" autocomplete="current-password" required><p id="password-error" class="error"></p><div class="dialog-actions"><button value="cancel">Zrušit</button><button id="unlock" value="default">Odemknout</button></div></form></dialog>
+<footer>Údaje jsou informativní a nepředstavují investiční doporučení.</footer>
+<script src="app.js" defer></script>
+</body></html>
