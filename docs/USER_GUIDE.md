@@ -41,6 +41,8 @@ Sloupce zleva:
 
 Názvy prodejců jsou vycentrované nad jejich dvěma sloupci. Oba řádky záhlaví jsou připnuté k hornímu okraji tabulky. Při prohlížení starších dnů se posouvá obsah tabulky a záhlaví zůstává viditelné. Na mobilu lze tabulku posouvat svisle i vodorovně.
 
+Pod záhlavím je výrazná vodorovná čára. Jednotlivé dny odděluje silnější čára přes celou šířku tabulky, včetně data a provozních údajů. Uvnitř jednoho dne zůstává mezi cenami a spready jemné ohraničení. Oddělovače jsou kontrastní ve světlém i tmavém vzhledu.
+
 Ve výchozím stavu se zobrazuje nejvýše 30 dnů. **Zobrazit vše** načte do tabulky celou zveřejněnou historii. **Stáhnout CSV** uloží právě zvolenou produkční nebo testovací datovou sadu.
 
 ## Produkční a testovací data

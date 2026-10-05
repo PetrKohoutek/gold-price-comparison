@@ -19,3 +19,11 @@ thead tr:nth-child(2) th{top:46px;z-index:3}
 thead tr:first-child th[colspan="2"]{text-align:center}
 thead tr:first-child th[rowspan="2"]{vertical-align:middle}
 @media(max-width:700px){.table-wrap{max-height:65vh}}
+
+/* Výrazné oddělení celých dnů a spodní hrany připnutého záhlaví. */
+:root{--day-divider:#948570}
+body.dark{--day-divider:#a99a81}
+tbody tr.day-spreads td,
+tbody tr.day-prices td[rowspan="2"]{border-bottom:2px solid var(--day-divider)}
+thead tr:nth-child(2) th,
+thead tr:first-child th[rowspan="2"]{box-shadow:inset 0 -3px 0 var(--day-divider)}
