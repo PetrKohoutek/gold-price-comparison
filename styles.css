@@ -27,3 +27,8 @@ tbody tr.day-spreads td,
 tbody tr.day-prices td[rowspan="2"]{border-bottom:2px solid var(--day-divider)}
 thead tr:nth-child(2) th,
 thead tr:first-child th[rowspan="2"]{box-shadow:inset 0 -3px 0 var(--day-divider)}
+
+/* Rozdíly využívají místo u nadpisu, bez zvětšení karet. */
+.card{padding-top:18px;padding-bottom:18px}
+.card h3{margin:0 0 4px}
+.metric-advantage{display:block;min-height:1.45em;font-size:.75rem;line-height:1.45;font-weight:650;color:var(--good-text)}
