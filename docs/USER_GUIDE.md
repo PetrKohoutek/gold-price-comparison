@@ -10,7 +10,14 @@ V mobilním prohlížeči ji lze přidat na plochu. Instalovaná aplikace použ�
 
 ## Aktuální porovnání
 
-Horní část zobrazuje poslední zveřejněný den samostatně pro IBIS a Golden Gate. Zelená barva vždy označuje výhodnější hodnotu pro klienta:
+Nad historií jsou dvě samostatná porovnání:
+
+1. **Aktuální porovnání, každou hodinu 7:00 až 17:00**: poslední platné hodinové měření z `data/latest.json`. Sběr probíhá v pracovní dny, tedy jedenáctkrát denně.
+2. **Denní porovnání, pracovní dny v 18:20**: poslední schválené večerní měření z `data/production.json`.
+
+Doplňky nadpisů mají stejnou velikost písma jako datum a čas. Obě části ukazují vlastní skutečné datum a čas načtení, oddělené tečkou `·`. GitHub může plánovaný běh zpozdit. V 19:00 tak může být nahoře měření kolem 17:00 a pod ním večerní kolem 18:20. Večerní sběr hodinový snímek nepřepisuje. O víkendu nebo při chybě zůstává poslední platné měření; stáří poznáte podle časového údaje.
+
+Každé porovnání obsahuje samostatné karty IBIS a Golden Gate. Zelená barva vždy označuje výhodnější hodnotu pro klienta:
 
 | Údaj | Výhodnější hodnota |
 |---|---|
@@ -19,7 +26,11 @@ Horní část zobrazuje poslední zveřejněný den samostatně pro IBIS a Golde
 | Spread v Kč | nižší |
 | Spread v % | nižší |
 
-Při přesné shodě jsou zelené obě hodnoty.
+Při přesné shodě jsou zelené obě hodnoty, bez peněžního rozdílu.
+
+Pod výhodnější korunovou hodnotou je menším zeleným písmem rozdíl vůči druhému prodejci: u nižšího prodeje `−N Kč`, u vyššího výkupu `+N Kč`, u nižšího spreadu `−N Kč`. Písmo rozdílu má 12 px proti 20 px hlavního čísla (60 %). U spreadu v procentech se další korunový rozdíl nezobrazuje. Velikost karet se kvůli rozdílům nezvětšovala.
+
+Pokud hodinový soubor ještě neexistuje, aplikace oznámí „Hodinové měření zatím není zveřejněno.“ Při jiné chybě načtení doporučí obnovit stránku. Denní porovnání a historie zůstávají samostatně dostupné; večerní ceny nenahrazují chybějící hodinové měření.
 
 ## Historická tabulka
 
@@ -47,9 +58,9 @@ Ve výchozím stavu se zobrazuje nejvýše 30 dnů. **Zobrazit vše** načte do 
 
 ## Produkční a testovací data
 
-Produkční režim čte `data/production.json`. Soubor obsahuje pouze úplné schválené záznamy.
+Produkční režim čte hodinový objekt `data/latest.json` a denní historii `data/production.json`. Oba obsahují úplné zveřejněné čtveřice cen. CSV obsahuje pouze denní historii, nikoli hodinový snímek.
 
-Tlačítko **Testovací data** otevře dialog pro heslo. Heslo se používá pouze v daném zařízení k místnímu rozšifrování `data/test.enc`; neposílá se na server a v repozitáři není uloženo. Tlačítko **Zrušit** dialog ihned zavře. Po úspěšném odemčení aplikace viditelně oznámí, že zobrazuje testovací data. **Zpět na produkci** znovu načte produkční režim.
+Tlačítko **Testovací data** otevře dialog pro heslo. Heslo se používá pouze v daném zařízení k místnímu rozšifrování `data/test.enc`; neposílá se na server a v repozitáři není uloženo. Tlačítko **Zrušit** dialog ihned zavře. Po úspěšném odemčení aplikace viditelně oznámí, že zobrazuje testovací data, a skryje produkční hodinové porovnání, aby nemíchala obě sady. **Zpět na produkci** znovu načte produkční režim.
 
 ## Aktualizace instalované aplikace
 
@@ -75,3 +86,24 @@ Po každé změně tabulky ověřte na počítači i mobilu:
 ## Obsah veřejného repozitáře
 
 Veřejně smějí být pouze statické soubory PWA, schválená produkční data a zašifrovaná testovací data. Scraper, čekající nebo odmítnutá měření, interní diagnostika, hesla a tokeny patří výhradně do soukromého repozitáře `gold-competitor-monitor`.
+
+## Instalace v Chrome na počítači
+
+Otevřete [aplikaci](https://petrkohoutek.github.io/gold-price-comparison/). Klikněte na instalační ikonu v adresním řádku; případně v nabídce **⋮ → Odeslat, uložit a sdílet → Nainstalovat stránku jako aplikaci**. Názvy nabídky se mohou podle verze Chrome lišit. Potvrďte instalaci. V samostatně otevřeném okně aplikace klikněte pravým tlačítkem na její ikonu na hlavním panelu Windows a vyberte **Připnout na hlavní panel**. [Oficiální návod Chrome](https://support.google.com/chrome/answer/9658361).
+
+Instalace přesune zobrazení do samostatného okna; scraper dále běží na GitHubu, nikoli na počítači nebo telefonu.
+
+## Kdy se obnovují ceny
+
+Ceny se požadují ze sítě při načtení nebo obnovení stránky. Nové zveřejnění na GitHubu nezmění automaticky obrazovku již otevřenou na jiném zařízení. Aplikace nemá pravidelné dotazování ani obnovu při návratu z pozadí. Pro jistotu použijte obnovení stránky nebo aplikaci skutečně zavřete a otevřete online.
+
+Nejprve musí skončit zeleně **Nasazení PWA**; samotný commit ještě neznamená zveřejnění na webu. Nové ceny a nová verze vzhledu jsou různé věci: statická verze může čekat na zavření všech starých oken a projevit se při druhém otevření. To není důvod, aby se při skutečném načtení stránky dál používaly staré ceny. Bez internetu se aktuálnost dat nezaručuje.
+
+## Kontrola nových porovnání
+
+- Ověřte zvlášť datum a čas hodinového i denního porovnání a shodu s jejich datovými soubory.
+- Zkontrolujte zelené korunové rozdíly, shody bez nulového rozdílu a mobilní šířku.
+- Historie a CSV musí dál obsahovat pouze denní data; testovací režim nesmí zobrazovat produkční hodinové ceny.
+- Při testu chybějícího hodinového souboru musí fungovat denní část a historie.
+
+Vlastník může při vědomém testu publikace dočasně změnit údaj `actual_time` v [data/latest.json](https://github.com/PetrKohoutek/gold-price-comparison/blob/main/data/latest.json), počkat na nasazení a ověřit nové načtení. Jde pouze o dočasnou testovací značku, nikoli nové měření; datum, čas a `captured_at` mají v běžném provozu odpovídat sobě. Po testu obnovte původní obsah a znovu počkejte na nasazení. Tento ruční test na zařízení nebyl v záznamu dnešního ověření potvrzen jako provedený.
