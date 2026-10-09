@@ -1,8 +1,9 @@
 # Porovnání cen zlata – PAMP Lady Fortuna 1 oz
 
-Veřejná statická PWA s denním porovnáním cen IBIS a Golden Gate. Nasazuje se zdarma pomocí GitHub Pages.
+Veřejná statická PWA s hodinovým a denním porovnáním cen IBIS a Golden Gate. Nasazuje se zdarma pomocí GitHub Pages.
 
-- produkční data: `data/production.json`;
+- poslední hodinový snímek: `data/latest.json`;
+- produkční denní data: `data/production.json`;
 - zašifrovaná testovací data: `data/test.enc`;
 - heslo pro testovací režim se ověřuje a používá pouze lokálně v prohlížeči.
 
@@ -33,3 +34,5 @@ U obou porovnání se zobrazuje jejich skutečné datum a čas. Chybějící hod
 soubor zobrazí informaci o dosud nezveřejněném měření; nenahrazuje se večerními
 cenami. Nové ceny se načtou při otevření nebo obnovení stránky. V testovacím
 režimu se produkční hodinové porovnání skryje, aby se nemíchalo s testovacími daty.
+
+Záznam změn z 9. 10. 2026, zaváděcího měření a provedeného ověření: [docs/CHANGES_2026-10-09.md](docs/CHANGES_2026-10-09.md). Ceny se načítají při skutečném načtení nebo obnovení stránky; pouhý návrat do již otevřené aplikace je neobnovuje.

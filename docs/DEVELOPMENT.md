@@ -67,3 +67,17 @@ GitHub Pages nasazuje pouze větev `main`. Repozitář v **Settings → Pages** 
 Po změně spusťte kontrolu z [USER_GUIDE.md](USER_GUIDE.md) na počítači a telefonu. Zvlášť ověřte oba připnuté řádky, vodorovný posun, testovací dialog, CSV, tmavý režim a nové načtení po zavření instalované PWA.
 
 Veřejná data se běžně neupravují ručně. Pokud jsou chybná, opravuje se zdroj a stav v soukromém monitoru a data se znovu exportují.
+
+## Zapojení dvou porovnání od 9. 10. 2026
+
+Hodinová část používá `#hourly-comparison`, `#hourly-title`, `#hourly-date` a `#hourly-cards`; denní zachovává `#current-title`, `#date` a `#cards`. Obě používají existující `cardsHtml`. Od Historie níže se struktura neměnila. Menší doplňky nadpisů používají `.comparison-schedule` (16 px, běžná váha písma).
+
+Hodinový požadavek je nezávislý: `data/latest.json?t=<aktuální čas>` s `cache: 'no-store'`. Denní data rovněž dostávají čerstvý požadavek. HTTP 404 hodinového souboru je prázdný stav, jiná chyba má vlastní hlášení. Nesmí zablokovat denní vykreslení ani nahradit hodinové ceny denními. Testovací režim hodinovou produkční část skrývá.
+
+Korunový rozdíl v kartách je vlastní hodnota minus hodnota druhé firmy. Zobrazuje se pouze u jednoznačně výhodnější korunové hodnoty; při shodě ani u procent se nezobrazuje. Karty zůstávají stejné velikosti.
+
+Verze shell cache po PR #6 a #7 je `gold-prices-v8`. Service worker nepoužívá `skipWaiting`, `clients.claim` ani automatické obnovení při změně řídicího workeru. Nová verze se stáhne v pozadí a čeká na ukončení starých klientů; proto může vzhled potřebovat druhé otevření. Tato logika nebyla měněna. Aplikace nemá polling ani obnovu při změně viditelnosti. Datová větev service workeru čerstvé odpovědi sama neukládá do cache, proto se neslibuje offline dostupnost cen.
+
+Přímý scraper v PWA nebyl zaveden: HTML výkupu IBIS a produktu Golden Gate při ověření 9. 10. 2026 neposkytovalo CORS oprávnění pro původ PWA. Záložkový skript běží přímo v původu prodejce; běžné tlačítko PWA nemůže stejným způsobem číst cizí stránku. Podrobnosti rozhodnutí a ověření jsou v [CHANGES_2026-10-09.md](CHANGES_2026-10-09.md).
+
+Při změně JavaScriptu ověřte `node --check app.js` a `node --check sw.js`, poté zobrazení na mobilní šířce, oba časové údaje, chybějící snímek, světlý a tmavý vzhled. Tyto kontroly samy nenahrazují úspěšné nasazení Pages.
