@@ -14,6 +14,7 @@
 | `manifest.webmanifest` | název, barvy, standalone režim a instalační ikony |
 | `sw.js` | cache statických souborů; datové požadavky preferují síť |
 | `data/production.json` | schválená veřejná produkční historie |
+| `data/latest.json` | poslední platný hodinový snímek; nezávislý na večerní historii |
 | `data/test.enc` | veřejně dostupný, ale šifrovaný testovací obsah |
 | `.github/workflows/pages.yml` | nasazení celého repozitáře na GitHub Pages po pushi do `main` |
 
@@ -35,6 +36,17 @@
 Nuly ukazují typy. Aplikace očekává číselné ceny a spready, datum ISO a časy jako text. Nejnovější datum je po načtení seřazeno jako první.
 
 `test.enc` je obálka AES-256-GCM. `app.js` odvodí klíč z uživatelského hesla algoritmem PBKDF2-SHA256 a po úspěšném dešifrování očekává stejné pole záznamů. Heslo neopustí prohlížeč.
+
+`latest.json` je jeden objekt, nikoli pole. Obsahuje stejná cenová pole jako denní
+řádek, `date`, `actual_time`, `corrected` a časové razítko `captured_at` s pražským
+offsetem. Nemá `scheduled_time: 18:20`. Vzniká pouze hodinovým workflow; denní
+export ani schvalovací příkazy jej nepřepisují. PWA nezávisle načítá obě datové
+sady a používá pro ně stejnou funkci vykreslení karet. Historie a CSV používají
+výhradně denní řádky. Do prvního hodinového měření je 404 očekávaný stav.
+
+Výjimka při zavedení: první snímek z 9. 10. 2026 v 20:55 výslovně dodal a
+schválil vlastník. Není vydáván za automaticky získané měření a nepatří do historie.
+Další platný hodinový sběr jej nahradí.
 
 ## Vykreslení a porovnání
 
