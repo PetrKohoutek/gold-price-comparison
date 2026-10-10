@@ -1,4 +1,4 @@
-const CACHE = 'gold-prices-v11';
+const CACHE = 'gold-prices-v12';
 const CACHE_PREFIX = 'gold-prices-v';
 const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 self.addEventListener('install', event => {
