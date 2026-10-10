@@ -29,4 +29,14 @@ document.querySelector('#theme').onclick=()=>{document.body.classList.toggle('da
 document.querySelector('#all').onclick=()=>{state.all=!state.all;render()};document.querySelector('#csv').onclick=csv;document.querySelector('#test-mode').onclick=()=>{if(state.test){location.reload()}else document.querySelector('#password-dialog').showModal()};document.querySelector('#cancel-password').onclick=()=>{document.querySelector('#password').value='';document.querySelector('#password-error').textContent='';document.querySelector('#password-dialog').close()};document.querySelector('#unlock').onclick=async e=>{e.preventDefault();try{state.rows=await unlock(document.querySelector('#password').value);state.test=true;document.querySelector('#password').value='';document.querySelector('#password-dialog').close();document.querySelector('#notice').hidden=false;document.querySelector('#notice').textContent='Zobrazená data jsou testovací a nejsou součástí produkční historie.';render()}catch{document.querySelector('#password-error').textContent='Nesprávné heslo nebo neplatná testovací data.'}};
 loadProduction().then(rows=>{state.rows=rows.sort((a,b)=>b.date.localeCompare(a.date));render()}).catch(e=>{document.querySelector('#notice').hidden=false;document.querySelector('#notice').textContent=`Data se nepodařilo načíst: ${e.message}`});
 async function loadHourly(){try{const response=await fetch(`data/latest.json?t=${Date.now()}`,{cache:'no-store'});if(response.status===404){state.hourlyMessage='Hodinové měření zatím není zveřejněno.'}else{if(!response.ok)throw Error(`HTTP ${response.status}`);state.hourly=await response.json()}}catch{state.hourlyMessage='Aktuální porovnání se nepodařilo načíst. Zkuste stránku obnovit.'}render()}
-loadHourly();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+loadHourly();
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js', {updateViaCache: 'none'}).then(registration => {
+    const checkUpdate = () => {
+      if (document.visibilityState === 'visible') registration.update().catch(() => {});
+    };
+    checkUpdate();
+    document.addEventListener('visibilitychange', checkUpdate);
+    window.addEventListener('online', checkUpdate);
+  }).catch(error => console.warn('Aktualizaci aplikace se nepodařilo ověřit:', error));
+}

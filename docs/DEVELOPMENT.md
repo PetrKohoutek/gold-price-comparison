@@ -76,7 +76,9 @@ Hodinový požadavek je nezávislý: `data/latest.json?t=<aktuální čas>` s `c
 
 Korunový rozdíl v kartách je vlastní hodnota minus hodnota druhé firmy. Zobrazuje se pouze u jednoznačně výhodnější korunové hodnoty; při shodě ani u procent se nezobrazuje. Karty zůstávají stejné velikosti.
 
-Verze shell cache po PR #6 a #7 je `gold-prices-v8`. Service worker nepoužívá `skipWaiting`, `clients.claim` ani automatické obnovení při změně řídicího workeru. Nová verze se stáhne v pozadí a čeká na ukončení starých klientů; proto může vzhled potřebovat druhé otevření. Tato logika nebyla měněna. Aplikace nemá polling ani obnovu při změně viditelnosti. Datová větev service workeru čerstvé odpovědi sama neukládá do cache, proto se neslibuje offline dostupnost cen.
+Od opravy z 10. 10. 2026 používá shell cache `gold-prices-v11`. Instalace načte celý shell s `cache: reload`; teprve po úspěchu zavolá `skipWaiting`. Při neúspěšném stažení zůstane starý worker aktivní. Aktivace nepoužívá `clients.claim`, navigaci oken ani automatické obnovení. Otevřená stránka zůstává zachovaná; nový aktivní worker obslouží následující načtení stránky. Maže pouze starší cache s prefixem `gold-prices-v`, nikoli cache jiných aplikací stejného původu.
+
+Registrace používá `updateViaCache: none` a ověřuje novou verzi při otevření, návratu do viditelného okna a obnovení připojení. Tato kontrola není pravidelné načítání cen. Aktualizace sama neukončuje testovací režim ani nemění pozici v tabulce. Při ručním obnovení stránky se její dočasný stav běžně načte znovu. Nastavení vzhledu v localStorage zůstává. Statický shell je dostupný offline; aktuálnost cen bez internetu se nezaručuje.
 
 Přímý scraper v PWA nebyl zaveden: HTML výkupu IBIS a produktu Golden Gate při ověření 9. 10. 2026 neposkytovalo CORS oprávnění pro původ PWA. Záložkový skript běží přímo v původu prodejce; běžné tlačítko PWA nemůže stejným způsobem číst cizí stránku. Podrobnosti rozhodnutí a ověření jsou v [CHANGES_2026-10-09.md](CHANGES_2026-10-09.md).
 

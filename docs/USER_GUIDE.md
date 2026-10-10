@@ -64,12 +64,9 @@ Tlačítko **Testovací data** otevře dialog pro heslo. Heslo se používá pou
 
 ## Aktualizace instalované aplikace
 
-Po nasazení nové verze:
+Po nasazení nové verze počkejte na zelené **Nasazení PWA** a otevřete aplikaci online. Jakmile se celý nový shell stáhne, aktivuje se na pozadí. Nový vzhled se použije při následujícím skutečném načtení nebo ručním obnovení stránky; již otevřená obrazovka se sama neobnovuje. Není potřeba opakovaně zavírat všechna okna. Při nedostupné síti nebo neúplném stažení dál funguje stará statická verze.
 
-1. počkejte, až workflow **Nasazení PWA** v GitHub Actions skončí zeleně;
-2. instalovanou PWA úplně zavřete;
-3. znovu ji spusťte s internetovým připojením;
-4. pokud se změna ještě neprojevila, zavřete a otevřete aplikaci ještě jednou, aby se dokončila aktivace nového service workeru.
+Kontrola verze se opakuje při návratu do aplikace a obnovení připojení. Aktualizace sama neukončuje testovací režim ani posun tabulky. Ruční obnovení znovu načte dočasný stav stránky; nastavení světlého/tmavého vzhledu zůstává. Skutečný průchod aktualizací na konkrétních mobilech je potřeba potvrdit po nasazení opravy.
 
 ## Kontrola po nasazení
 
@@ -95,9 +92,9 @@ Instalace přesune zobrazení do samostatného okna; scraper dále běží na Gi
 
 ## Kdy se obnovují ceny
 
-Ceny se požadují ze sítě při načtení nebo obnovení stránky. Nové zveřejnění na GitHubu nezmění automaticky obrazovku již otevřenou na jiném zařízení. Aplikace nemá pravidelné dotazování ani obnovu při návratu z pozadí. Pro jistotu použijte obnovení stránky nebo aplikaci skutečně zavřete a otevřete online.
+Ceny se požadují ze sítě při načtení nebo obnovení stránky. Nové zveřejnění na GitHubu nezmění automaticky obrazovku již otevřenou na jiném zařízení. Aplikace nemá pravidelné dotazování na ceny. Při návratu z pozadí kontroluje novou verzi programu; nový vzhled se projeví až při příštím načtení stránky. Pro jistotu použijte obnovení stránky nebo aplikaci skutečně zavřete a otevřete online.
 
-Nejprve musí skončit zeleně **Nasazení PWA**; samotný commit ještě neznamená zveřejnění na webu. Nové ceny a nová verze vzhledu jsou různé věci: statická verze může čekat na zavření všech starých oken a projevit se při druhém otevření. To není důvod, aby se při skutečném načtení stránky dál používaly staré ceny. Bez internetu se aktuálnost dat nezaručuje.
+Nejprve musí skončit zeleně **Nasazení PWA**; samotný commit ještě neznamená zveřejnění na webu. Nové ceny a nová verze vzhledu jsou různé věci: statická verze se po úplném stažení aktivuje a použije při příštím načtení stránky. To není důvod, aby se při skutečném načtení stránky dál používaly staré ceny. Bez internetu se aktuálnost dat nezaručuje.
 
 ## Kontrola nových porovnání
 
