@@ -13,9 +13,9 @@
       "spread_czk": 9841,
       "spread_percent": 10.08
     },
-    "corrected": false,
+    "corrected": true,
     "scheduled_time": "18:20",
-    "actual_time": "19:24"
+    "actual_time": "22:39"
   },
   {
     "date": "2026-10-27",
