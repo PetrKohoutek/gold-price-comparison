@@ -1,5 +1,23 @@
 [
   {
+    "date": "2026-11-04",
+    "ibis": {
+      "sale_czk": 98368,
+      "buyback_czk": 91100,
+      "spread_czk": 7268,
+      "spread_percent": 7.39
+    },
+    "golden_gate": {
+      "sale_czk": 96712,
+      "buyback_czk": 86927,
+      "spread_czk": 9785,
+      "spread_percent": 10.12
+    },
+    "corrected": false,
+    "scheduled_time": "18:20",
+    "actual_time": "19:24"
+  },
+  {
     "date": "2026-11-03",
     "ibis": {
       "sale_czk": 95610,
