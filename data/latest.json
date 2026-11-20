@@ -1,18 +1,18 @@
 {
   "date": "2026-11-20",
   "ibis": {
-    "sale_czk": 92084,
-    "buyback_czk": 85026,
-    "spread_czk": 7058,
-    "spread_percent": 7.66
+    "sale_czk": 88742,
+    "buyback_czk": 81793,
+    "spread_czk": 6949,
+    "spread_percent": 7.83
   },
   "golden_gate": {
-    "sale_czk": 86839,
-    "buyback_czk": 77833,
-    "spread_czk": 9006,
-    "spread_percent": 10.37
+    "sale_czk": 86650,
+    "buyback_czk": 77656,
+    "spread_czk": 8994,
+    "spread_percent": 10.38
   },
   "corrected": false,
-  "actual_time": "17:14",
-  "captured_at": "2026-11-20T17:14:41+01:00"
+  "actual_time": "23:05",
+  "captured_at": "2026-11-20T23:05:52+01:00"
 }
