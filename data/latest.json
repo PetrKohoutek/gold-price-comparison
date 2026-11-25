@@ -7,12 +7,12 @@
     "spread_percent": 7.81
   },
   "golden_gate": {
-    "sale_czk": 86858,
-    "buyback_czk": 77851,
-    "spread_czk": 9007,
+    "sale_czk": 86772,
+    "buyback_czk": 77771,
+    "spread_czk": 9001,
     "spread_percent": 10.37
   },
   "corrected": false,
-  "actual_time": "08:14",
-  "captured_at": "2026-11-25T08:14:39+01:00"
+  "actual_time": "09:14",
+  "captured_at": "2026-11-25T09:14:44+01:00"
 }
